@@ -31,7 +31,9 @@ app.controller('cAdvisorController', [
 
                 // console.log("maxData", maxData);
                 var hostname = "";
-                if(m.status.addresses)
+                if(m.metadata.name) {
+                  hostname = m.metadata.name;
+                } else if(m.status.addresses)
                   hostname = m.status.addresses[0].address;
 
                 $scope.activeMinionDataById[m.metadata.name] =
@@ -49,7 +51,7 @@ app.controller('cAdvisorController', [
         $scope.loading = false;
       });
     };
-    
+
     // d3
     function getColorForIndex(i, percentage) {
       // var colors = ['red', 'blue', 'yellow', 'pink', 'purple', 'green', 'orange'];
